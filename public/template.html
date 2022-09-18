@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+
+        </div>
+        <div class="game-camera">
+            <div class="area-camera">
+    
+            </div>
+            <div class="area-game">
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script type="module">
+    import { io } from "https://cdn.socket.io/4.5.1/socket.io.esm.min.js";
+    const socket = io('http://localhost:3333');
+    socket.once('connect', () => console.log('connected'))
+</script>
+</html>

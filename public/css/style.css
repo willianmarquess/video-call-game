@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+*:focus {
+    outline: none;
+}
+
+
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: #1e2124;
+    margin: 0 auto;
+    display: flex;
+}
+
+.sidebar {
+    width: 15%;
+    height: auto;
+    background-color: #1e2124;
+}
+
+.title-sidebar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80px;
+    border-bottom: 1px solid #5b6166;
+}
+
+.title-sidebar span{
+    font-size: 1.3em;
+    color: #7289da;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+.users-list{
+    width: 100%;
+    height: 500px;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.users-list button {
+    margin-top: 32px;
+}
+
+.users-list span{ 
+    padding-top: 12px;
+    font-size: 12px;
+    text-align: center;
+    display: block;
+    color: #8a8e92;
+}
+
+.users-list ul{
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 10px;
+    text-align: center;
+    color: #8a8e92;
+}
+
+.control-area{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.control-area button{
+    width: 50%;
+}
+
+.game-camera {
+    width: 85%;
+    height: auto;
+    background-color: 	#36393e;
+    display: flex;
+    flex-direction: column;
+}
+
+.call {
+    width: 100%;
+    height: 220px;
+    background-color:#282b30;
+    display: flex;
+    flex-direction: column;
+}
+
+.area-camera {
+    width: 100%;
+    height: 170px;
+    background-color: #282b30;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 12px;
+}
+
+.area-camera video{
+    width: auto;
+    height: 145px;
+}
+
+.control-call {
+    height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    background-color: #282b30;
+}
+
+.area-game {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 235px);
+}
+
+.card {
+    width: 300px;
+    height: 145px;
+    background-color: #1e2124;
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    gap: 12px;
+}
+
+.card span{
+    font-family: 'Roboto', sans-serif;
+    color: #e1e8ee;
+    display: block;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5em;
+}
+
+.card h6{
+    font-family: 'Roboto', sans-serif;
+    color: #98a1a8;
+    display: block;
+    text-align: center;
+    font-weight: 100;
+    font-size: 0.8em;
+}
+
+.card form {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+}
+
+.card form input {
+    width: 100%;
+    border: none;
+    height: 28px;
+    border-radius: 2px;
+    background-color: #e1e8ee;
+    color: #3b4046;
+    font-family: 'Roboto', sans-serif;
+    padding-left: 5px;
+    font-weight: 700;
+    font-size: 1.1em;
+}
+
+.card form button {
+    width: 80px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1em;
+    font-weight: 700;
+    border: none;
+    border-radius: 2px;
+    background-color: #7289da;
+    color: #e1e8ee;
+    height: 28px;
+    cursor: pointer;
+}
+
+.card form button:hover {
+    background-color: #5b73c7;
+}
+
