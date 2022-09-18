@@ -33,7 +33,7 @@ function main() {
     })
 
     server.listen(80, () => {
-        console.log('server running on http://localhost:3333');
+        console.log('server running on http://localhost:80');
     })
 }
 
