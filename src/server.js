@@ -32,8 +32,8 @@ function main() {
         return res.status(200).json(newPlayer);
     })
 
-    server.listen(80, () => {
-        console.log('server running on http://localhost:80');
+    server.listen(3333, () => {
+        console.log('server running on http://localhost:3333');
     })
 }
 

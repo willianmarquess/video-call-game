@@ -157,10 +157,15 @@ export default class VideoCallController {
 
 
     #createVideoElement(id) {
+        const elemExists = document.getElementById(id);
+        if(elemExists) {
+            return elemExists;
+        }
         const videoElem = document.createElement('video');
         videoElem.setAttribute('id', id);
         videoElem.setAttribute('poster', './assets/basic-avatar.png');
         videoElem.autoplay = true;
+        videoElem.addEventListener('stop', () => console.log('video parou'));
         return videoElem;
     }
 
