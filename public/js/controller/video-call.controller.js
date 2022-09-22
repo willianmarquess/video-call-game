@@ -165,7 +165,7 @@ export default class VideoCallController {
         videoElem.setAttribute('id', id);
         videoElem.setAttribute('poster', './assets/basic-avatar.png');
         videoElem.autoplay = true;
-        videoElem.addEventListener('stop', () => console.log('video parou'));
+        videoElem.addEventListener('pause', () => console.log('video parou'));
         return videoElem;
     }
 
