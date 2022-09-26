@@ -113,6 +113,7 @@
 .area-camera video{
     width: auto;
     height: 145px;
+    transform: scaleX(-1);
 }
 
 .control-call {
