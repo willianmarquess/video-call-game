@@ -8,6 +8,17 @@ export default class CallComponent {
     }
 
     render() {
+
+        const localVideoElem = createElement('video', {
+            attributes: {
+                id: 'local-video',
+                autoplay: 'true',
+                poster: './assets/basic-avatar.png'
+            }
+        })
+        
+        localVideoElem.muted = true;
+
         const areaCameraElem = createElement('div', {
             attributes: {
                 class: 'area-camera',
@@ -16,13 +27,7 @@ export default class CallComponent {
         },
             null,
             [
-                createElement('video', {
-                    attributes: {
-                        id: 'local-video',
-                        autoplay: 'true',
-                        poster: './assets/basic-avatar.png'
-                    }
-                })
+                localVideoElem
             ]);
 
         const areaControllCallElem = createElement('div', {
