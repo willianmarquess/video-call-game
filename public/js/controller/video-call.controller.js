@@ -31,7 +31,7 @@ export default class VideoCallController {
             video
         }
     }
-    
+
     async #config() {
         await this.#updateCallConfig();
         this.#buttonControlAudio.setAttribute('src', `./assets/video-controlls/${this.#callConfig.audio}-audio-icon.png`);
@@ -103,7 +103,10 @@ export default class VideoCallController {
 
             this.#createAndConfigPeer(id);
 
-            const offer = await this.#peers[id].createOffer();
+            const offer = await this.#peers[id].createOffer({
+                offerToReceiveAudio: true,
+                offerToReceiveVideo: true,
+            });
             await this.#peers[id].setLocalDescription(offer);
 
             this.#socket.emit('call', {
@@ -147,7 +150,28 @@ export default class VideoCallController {
     }
 
     #createAndConfigPeer(id) {
-        this.#peers[id] = new RTCPeerConnection();
+        this.#peers[id] = new RTCPeerConnection({
+            iceServers: [
+                {
+                    urls: "stun:openrelay.metered.ca:80",
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:80",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:443",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                },
+                {
+                    urls: "turn:openrelay.metered.ca:443?transport=tcp",
+                    username: "openrelayproject",
+                    credential: "openrelayproject",
+                },
+            ],
+        });
         if (this.#localStream)
             this.#localStream.getTracks().forEach(track => this.#peers[id].addTrack(track, this.#localStream));
         this.#peers[id].onicecandidate = ({ candidate }) => this.#onIceCandidate(candidate, id);
@@ -158,7 +182,7 @@ export default class VideoCallController {
 
     #createVideoElement(id) {
         const elemExists = document.getElementById(id);
-        if(elemExists) {
+        if (elemExists) {
             return elemExists;
         }
         const videoElem = document.createElement('video');
@@ -177,14 +201,14 @@ export default class VideoCallController {
     }
 
     #muteUnmuteAudio() {
-        this.#localStream.getAudioTracks().forEach(track =>  { 
+        this.#localStream.getAudioTracks().forEach(track => {
             this.#buttonControlAudio.setAttribute('src', `./assets/video-controlls/${!track.enabled}-audio-icon.png`);
             track.enabled = !track.enabled
         });
     }
 
     #enableDisableVideo() {
-        this.#localStream.getVideoTracks().forEach(track => { 
+        this.#localStream.getVideoTracks().forEach(track => {
             this.#buttonControlVideo.setAttribute('src', `./assets/video-controlls/${!track.enabled}-video-icon.png`);
             track.enabled = !track.enabled
         });

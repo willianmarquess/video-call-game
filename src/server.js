@@ -1,3 +1,5 @@
+import dotenv from 'dotenv';
+dotenv.config({ path: `.env.${process.env.NODE_ENV}` });
 import express from 'express';
 import cors from 'cors';
 import { Server } from 'socket.io';
@@ -7,6 +9,7 @@ import PlayerInMemoryRepository from './database/player-in-memory.repository.js'
 import CallServer from './controllers/call-server.controller.js';
 
 function main() {
+    const PORT = process.env.SERVER_PORT || 3333;
     const app = express();
     const server = new http.createServer(app);
     const playerRepository = new PlayerInMemoryRepository();
@@ -32,8 +35,8 @@ function main() {
         return res.status(200).json(newPlayer);
     })
 
-    server.listen(3333, () => {
-        console.log('server running on http://localhost:3333');
+    server.listen(PORT, () => {
+        console.log(`server running on http://localhost:${PORT}`);
     })
 }
 
