@@ -72,25 +72,20 @@ export default class VideoCallController {
     }
 
     async #onAddIceCandidate({ candidate, id }) {
-        console.log('add ice candidate: ', candidate);
         await this.#peers[id].addIceCandidate(candidate);
     }
 
     async #onAnswerMade({ answer, id }) {
-        console.log('receiving answer from: ', id);
         await this.#peers[id].setRemoteDescription(answer);
     }
 
     async #onCallMade({ offer, id }) {
-        console.log('receiving call from: ', id);
-
         this.#createAndConfigPeer(id);
 
         await this.#peers[id].setRemoteDescription(offer);
         const answer = await this.#peers[id].createAnswer();
         await this.#peers[id].setLocalDescription(answer);
 
-        console.log('sending answer to', id);
         this.#socket.emit('make-answer', {
             answer,
             to: id
@@ -99,8 +94,6 @@ export default class VideoCallController {
 
     async #onNewUser(id) {
         try {
-            console.log('calling to ', id);
-
             this.#createAndConfigPeer(id);
 
             const offer = await this.#peers[id].createOffer({
@@ -120,7 +113,6 @@ export default class VideoCallController {
 
     async #onIceCandidate(candidate, id) {
         if (!candidate) return;
-        console.log('ice candidate event', { to: id, candidate });
         this.#socket.emit('ice-candidate', {
             candidate,
             to: id
@@ -128,7 +120,6 @@ export default class VideoCallController {
     }
 
     #onTrack(data, id) {
-        console.log('received data: ', data);
         const videoElem = this.#createVideoElement(id);
         const videoContainer = document.getElementById('video-container');
         videoContainer.appendChild(videoElem);
@@ -189,7 +180,6 @@ export default class VideoCallController {
         videoElem.setAttribute('id', id);
         videoElem.setAttribute('poster', './assets/basic-avatar.png');
         videoElem.autoplay = true;
-        videoElem.addEventListener('pause', () => console.log('video parou'));
         return videoElem;
     }
 

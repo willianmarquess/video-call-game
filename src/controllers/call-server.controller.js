@@ -10,7 +10,6 @@ export default class CallServer {
     
     #start() {
         this.#socketServer.on('connect', (socket) => {
-            console.log(`client connected: ${socket.id}`);
             this.#sockets[socket.id] = socket;
             socket.on('start-in-call', () => this.#notifyAllAboutNewUser(socket));
             socket.on('disconnect', () => this.#onDisconnect(socket));
@@ -23,18 +22,15 @@ export default class CallServer {
     #notifyAllAboutNewUser(socket) {
         for (const id in this.#sockets) {
             if (id === socket.id) continue;
-            console.log('notify user ' + id);
             this.#sockets[id].emit('new-user', socket.id);
         }
     }
 
     #onDisconnect(socket) {
-        console.log('disconnecting: ' + socket.id);
         delete this.#sockets[socket.id];
     }
 
     #onSendingCall(socket, { offer, to }) {
-        console.log('sending call to ' + to);
         socket.to(to).emit('call-made', {
             offer,
             id: socket.id
@@ -42,7 +38,6 @@ export default class CallServer {
     }
 
     #onMakeAnswer(socket, { answer, to }) {
-        console.log('make answer to ' + to);
         socket.to(to).emit('answer-made', {
             answer,
             id: socket.id

@@ -26,7 +26,6 @@ export default class GameServer {
     }
 
     #onPlayerMovement(socket, data) {
-        console.log('player updated');
         this.#playerRepository.updatePlayer(data.id, data);
         socket.broadcast.emit('player-moved', this.#playerRepository.getPlayer(data.id));
     }

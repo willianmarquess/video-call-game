@@ -65,7 +65,6 @@ export default class Play extends Phaser.Scene {
         this.#socket.emit('player-start', this.#player.getUpdateData());
     
         this.#socket.on('current-players', players => {
-            console.log(this.#playerData.id);
             UsersListComponent.initUsersListComponent(players); 
             delete players[this.#playerData.id];
             for (const id in players) {
@@ -74,7 +73,6 @@ export default class Play extends Phaser.Scene {
         });
     
         this.#socket.on('new-player', player => { 
-            console.log('new player');
             UsersListComponent.addUserToListComponent(player);
             this.#renderOtherPlayer(player);
         })
@@ -129,7 +127,6 @@ export default class Play extends Phaser.Scene {
     }
 
     #createNewOtherPlayer(otherPlayer) {
-        console.log(otherPlayer);
         const newOtherPlayer = this.physics.add.sprite(otherPlayer.gameObject.body.x + 8, otherPlayer.gameObject.body.y);
         newOtherPlayer.anims.play(otherPlayer.gameObject.animation.currentAnimKey, true);
         newOtherPlayer.flipX = otherPlayer.gameObject.flipX;
