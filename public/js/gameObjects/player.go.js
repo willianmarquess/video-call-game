@@ -20,7 +20,6 @@ export default class Player extends Phaser.Physics.Arcade.Sprite {
         this.#socket = WebSocketManager.getInstance();
         this.#config();
         this.#initStateMachine();
-        //this.getCenter()
     }
 
     #config() {

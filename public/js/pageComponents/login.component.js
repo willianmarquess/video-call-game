@@ -18,7 +18,9 @@ export default class LoginComponent {
 
     async #formSubmit(e) {
             e.preventDefault();
-            const user = await this.#userService.login({ name: document.getElementById('input-name').value });
+            const name = document.getElementById('input-name').value;
+            if(!name || typeof name !== 'string' || name.length < 2 || name.length > 20) return;
+            const user = await this.#userService.login({ name });
             global.user = user;
             this.#parentElem.innerHTML = '';
             
