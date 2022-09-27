@@ -30,7 +30,7 @@ function main() {
 
     app.post('/login', (req, res) => {
         const { name } = req.body;
-        if(!name) return res.status(400).end();
+        if(!name || typeof name !== 'string' || name.length < 2 || name.length > 20) return res.status(400).end();
         const newPlayer = playerRepository.addPlayer({ name });
         return res.status(200).json(newPlayer);
     })
