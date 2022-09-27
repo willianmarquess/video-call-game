@@ -8,6 +8,9 @@ export default function initGame() {
 		type: Phaser.AUTO,
 		parent: 'game',
 		backgroundColor: "#242424",
+		fps: {
+			target: 12,
+		},
 		physics: {
 			default: "arcade",
 			arcade: {
