@@ -184,10 +184,12 @@ export default class VideoCallController {
     }
 
     #removePeer(id) {
-        const turnOffElem = document.getElementById(id);
+        const videoElem = document.getElementById(id);
         const videoContainer = document.getElementById('video-container');
-        videoContainer.removeChild(turnOffElem);
-        delete this.#peers[id];
+        if(videoElem) {
+            videoContainer.removeChild(videoElem);
+            delete this.#peers[id];
+        }
     }
 
     #muteUnmuteAudio() {

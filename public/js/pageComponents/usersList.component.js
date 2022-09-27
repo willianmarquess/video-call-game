@@ -43,7 +43,9 @@ function addUserToListComponent(user) {
 function removeUserFromListComponent(id) {
     const ulElem = document.getElementById('users-list');
     const liElem = document.getElementById(id);
-    ulElem.removeChild(liElem);
+    if(liElem) {
+        ulElem.removeChild(liElem);
+    }
 }
 
 export default {

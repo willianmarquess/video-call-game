@@ -17,20 +17,4 @@ export default class UserSevice {
             console.log(error);
         }
     }
-
-    async getUsersInRoom() {
-        try {
-            const result = await fetch(`${this.#url}user`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                }
-            })
-            const response = await result.json();
-            return response;
-        } catch (error) {
-            console.log(error);
-        }
-    }
 }
